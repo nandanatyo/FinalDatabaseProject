@@ -16,7 +16,7 @@ public class CompanyDAO {
         List<Company> companies = new ArrayList<>();
         String query = "SELECT c.company_id, c.firm_name, c.subsector, MAX(fd.total_asset_idr) AS total_asset " +
                 "FROM companies c JOIN financial_data fd ON c.company_id = fd.company_id " +
-                "WHERE c.subsector = ? " +
+                "WHERE c.subsector = r? " +
                 "GROUP BY c.company_id, c.firm_name, c.subsector " +
                 "ORDER BY total_asset DESC " +
                 "LIMIT 1";

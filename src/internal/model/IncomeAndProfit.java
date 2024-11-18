@@ -4,24 +4,17 @@ public class IncomeAndProfit {
     private double salesRevenue;
     private double operatingProfitMargin;
     private double operatingProfitMarginRatio;
+    private int year;
 
-    // Constructor
-    public IncomeAndProfit(double salesRevenue, double operatingProfitMargin, double operatingProfitMarginRatio) {
+    public IncomeAndProfit(double salesRevenue, double operatingProfitMargin, double operatingProfitMarginRatio, int year) {
         this.salesRevenue = salesRevenue;
         this.operatingProfitMargin = operatingProfitMargin;
         this.operatingProfitMarginRatio = operatingProfitMarginRatio;
+        this.year = year;
     }
 
-    // Getters
-    public double getSalesRevenue() {
-        return salesRevenue;
-    }
-
-    public double getOperatingProfitMargin() {
-        return operatingProfitMargin;
-    }
-
-    public double getOperatingProfitMarginRatio() {
-        return operatingProfitMarginRatio;
-    }
+    public double getSalesRevenue() { return salesRevenue; }
+    public double getOperatingProfitMargin() { return operatingProfitMargin; }
+    public double getOperatingProfitMarginRatio() { return operatingProfitMarginRatio; }
+    public int getYear() { return year; }
 }

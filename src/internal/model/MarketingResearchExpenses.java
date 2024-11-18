@@ -3,19 +3,15 @@ package internal.model;
 public class MarketingResearchExpenses {
     private double advertisingExpenses;
     private double rndExpenses;
+    private int year;
 
-    // Constructor
-    public MarketingResearchExpenses(double advertisingExpenses, double rndExpenses) {
+    public MarketingResearchExpenses(double advertisingExpenses, double rndExpenses, int year) {
         this.advertisingExpenses = advertisingExpenses;
         this.rndExpenses = rndExpenses;
+        this.year = year;
     }
 
-    // Getters
-    public double getAdvertisingExpenses() {
-        return advertisingExpenses;
-    }
-
-    public double getRndExpenses() {
-        return rndExpenses;
-    }
+    public double getAdvertisingExpenses() { return advertisingExpenses; }
+    public double getRndExpenses() { return rndExpenses; }
+    public int getYear() { return year; }
 }

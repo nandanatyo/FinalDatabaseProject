@@ -17,15 +17,19 @@ public class MainView extends JFrame {
     private JButton incomeProfitButton;
     private JButton marketingResearchButton;
     private JButton productivityButton;
+    private JButton companyButton;
+    private JButton financialHealthButton;
     private JTable resultTable;
     private DefaultTableModel tableModel;
     private JPanel resultPanel;
+
 
     private EmployeeController ec;
     private FinanceDataController fc;
     private IncomeAndProfitDataController ipc;
     private MarketingResearchController mrc;
     private ProductivityController pc;
+    private CompanyController cc;
 
     public MainView(EmployeeController ec, FinanceDataController fc, IncomeAndProfitDataController ipc,
                     MarketingResearchController mrc, ProductivityController pc) {
@@ -55,7 +59,7 @@ public class MainView extends JFrame {
 
         // Buttons Panel with consistent brown color scheme
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 5, 50, 100));
+        buttonPanel.setLayout(new GridLayout(1, 5, 25, 100));
         buttonPanel.setBorder(BorderFactory.createTitledBorder("Select Data Category"));
         buttonPanel.setBackground(new Color(245, 222, 179)); // Light brown background
 
@@ -64,18 +68,22 @@ public class MainView extends JFrame {
         Color textColor = Color.WHITE;
 
         // Creating buttons with consistent brown color scheme
+        companyButton = createStyledButton("Companies", buttonColor, textColor);
         employeeButton = createStyledButton("Employee", buttonColor, textColor);
         financeDataButton = createStyledButton("Finance Data", buttonColor, textColor);
         incomeProfitButton = createStyledButton("Income & Profit", buttonColor, textColor);
         marketingResearchButton = createStyledButton("Marketing Research", buttonColor, textColor);
         productivityButton = createStyledButton("Productivity", buttonColor, textColor);
+        financialHealthButton = createStyledButton("Financial Health Check", buttonColor, textColor);
 
         // Add buttons to panel
+        buttonPanel.add(companyButton);
         buttonPanel.add(employeeButton);
         buttonPanel.add(financeDataButton);
         buttonPanel.add(incomeProfitButton);
         buttonPanel.add(marketingResearchButton);
         buttonPanel.add(productivityButton);
+        buttonPanel.add(financialHealthButton);
 
         // Result Panel with titled border (to create a block-like appearance)
         resultPanel = new JPanel();
@@ -120,6 +128,9 @@ public class MainView extends JFrame {
         incomeProfitButton.addActionListener(e -> handleIncomeProfitButton());
         marketingResearchButton.addActionListener(e -> handleMarketingResearchButton());
         productivityButton.addActionListener(e -> handleProductivityButton());
+        companyButton.addActionListener(e -> handleCompanyButton());
+        financialHealthButton.addActionListener(e -> handleFinancialHealthCheck());
+
     }
 
     private void handleEmployeeButton() {
@@ -135,6 +146,34 @@ public class MainView extends JFrame {
                 data[i][1] = employees.get(i).getNumberOfEmployees();
             }
             setTableData(data, columnNames);
+        }
+    }
+    private void handleCompanyButton() {
+        CompanyController cc = new CompanyController();
+        List<Company> companies = cc.fetchCompanyData();
+        if (companies.isEmpty()) {
+            setTableData(new Object[0][0], new String[]{"Message"});
+        } else {
+            String[] columnNames = {"Company Name", "Year"};
+            Object[][] data = new Object[companies.size()][2];
+            for (int i = 0; i < companies.size(); i++) {
+                data[i][0] = companies.get(i).getName();
+                data[i][1] = companies.get(i).getYear();
+            }
+            setTableData(data, columnNames);
+        }
+    }
+
+    private void handleFinancialHealthCheck() {
+        String companyName = getCompanyNameInput();
+        List<FinanceDataAndAsset> financeDataList = fc.fetchFinanceData(companyName); // Assuming `fc` is a FinanceDataController
+        if (financeDataList.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No financial data available for " + companyName, "Financial Health Check", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            FinancialHealthController fhc = new FinancialHealthController();
+            String result = fhc.determineFinancialHealth(financeDataList);
+            // Redirect to the new frame
+            new FinancialHealthResultFrame(result);
         }
     }
 

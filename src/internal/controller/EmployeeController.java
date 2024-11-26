@@ -2,7 +2,6 @@ package internal.controller;
 
 import internal.config.database.DatabaseConnection;
 import internal.model.Employee;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

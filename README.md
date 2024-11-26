@@ -14,8 +14,17 @@ This project serves as the final assignment for a database course, focusing on t
 
 ## Installation
 
-1. **Clone the repository**:
+**Clone the repository**:
 
    ```bash
    git clone https://github.com/nandanatyo/FinalDatabaseProject.git
+  ```
+## Prerequisite
+- **Init database**: Go to ```https://github.com/nandanatyo/Python-for-initiate-Manufacturing-Database/tree/main``` to initiate the database
   
+## Set Up and Running the program
+After your database is ready, follow the steps below
+- **Make and configure .env file**: The .env file should follow .envexample file
+- **Run the MainApp.java**: Run src/cmd/app/MainApp.java to start the program
+
+

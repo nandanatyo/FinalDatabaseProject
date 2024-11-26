@@ -1,36 +1,27 @@
 package internal.model;
 
 public class Company {
-    private int companyId;
-    private String firmName;
-    private String subsector;
-    private double totalAsset;
+    private String name;
+    private int year;
 
-    public Company(int companyId, String firmName, String subsector, double totalAsset) {
-        this.companyId = companyId;
-        this.firmName = firmName;
-        this.subsector = subsector;
-        this.totalAsset = totalAsset;
+    public Company(String name, int year) {
+        this.name = name;
+        this.year = year;
     }
 
-    public int getCompanyId() {
-        return companyId;
+    public String getName() {
+        return name;
     }
 
-    public String getFirmName() {
-        return firmName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSubsector() {
-        return subsector;
+    public int getYear() {
+        return year;
     }
 
-    public double getTotalAsset() {
-        return totalAsset;
-    }
-
-    @Override
-    public String toString() {
-        return "Company ID: " + companyId + ", Firm Name: " + firmName + ", Subsector: " + subsector + ", Total Asset: " + totalAsset;
+    public void setYear(int year) {
+        this.year = year;
     }
 }

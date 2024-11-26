@@ -14,12 +14,11 @@ public class EnvLoader {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                // Ignore comments and blank lines
+
                 if (line.startsWith("#") || line.trim().isEmpty()) {
                     continue;
                 }
 
-                // Split key-value pairs
                 String[] parts = line.split("=", 2);
                 if (parts.length == 2) {
                     String key = parts[0].trim();
